@@ -43,6 +43,9 @@ RUN pecl install -o -f xdebug-2.4.0
 ADD bin/docker-configure /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-configure
 
+ADD bin/magento-install /usr/local/bin/
+RUN chmod +x /usr/local/bin/magento-install
+
 ADD etc/xdebug.template /usr/local/etc/php/conf.d/php-xdebug.template
 ADD etc/php.template /usr/local/etc/php/conf.d/php-custom.template
 

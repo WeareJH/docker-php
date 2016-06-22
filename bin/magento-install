@@ -1,0 +1,31 @@
+#!/bin/bash
+
+cd $MAGE_ROOT_DIR
+
+if [ ! -d "vendor" ]; then
+  composer install
+fi
+
+MAGE_BIN=bin/magento
+chmod +x $MAGE_BIN
+
+echo "Installing Magento..."
+
+INSTALL_COMMAND="$MAGE_BIN setup:install \
+    --db-host=db \
+    --db-name=$MYSQL_DATABASE \
+    --db-user=$MYSQL_USER \
+    --db-password=$MYSQL_PASSWORD \
+    --base-url=$M2SETUP_BASE_URL \
+    --admin-firstname=$MAGE_ADMIN_FIRSTNAME \
+    --admin-lastname=$MAGE_ADMIN_LASTNAME \
+    --admin-email=$MAGE_ADMIN_EMAIL \
+    --admin-user=$MAGE_ADMIN_USER \
+    --admin-password=$MAGE_ADMIN_PASS \
+    --backend-frontname=$MAGE_BACKEND_FRONTNAME"
+
+$INSTALL_COMMAND
+$MAGE_BIN index:reindex
+$MAGE_BIN setup:static-content:deploy
+
+echo "Installation complete  ᕦ( ̿ ̿ - ̿ ̿ )つ"
