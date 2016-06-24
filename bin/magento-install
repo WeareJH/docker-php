@@ -2,9 +2,7 @@
 
 cd $MAGE_ROOT_DIR
 
-if [ ! -d "vendor" ]; then
-  composer install
-fi
+composer install
 
 MAGE_BIN=bin/magento
 chmod +x $MAGE_BIN
