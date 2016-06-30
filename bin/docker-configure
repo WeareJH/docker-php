@@ -2,9 +2,11 @@
 
 envsubst < "/usr/local/etc/php/conf.d/php-xdebug.template" > "/usr/local/etc/php/conf.d/php-xdebug.ini"
 envsubst < "/usr/local/etc/php/conf.d/php-custom.template" > "/usr/local/etc/php/conf.d/php-custom.ini"
+envsubst < "/etc/msmtprc.template" > "/etc/msmtprc"
 
 rm /usr/local/etc/php/conf.d/php-xdebug.template
 rm /usr/local/etc/php/conf.d/php-custom.template
+rm /etc/msmtprc.template
 
 [ "$XDEBUG_ENABLE" = "true" ] && \
     docker-php-ext-enable xdebug && \

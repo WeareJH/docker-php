@@ -18,7 +18,8 @@ RUN apt-get update \
     libmcrypt-dev \
     libpng12-dev \
     libxslt1-dev \
-    gettext
+    gettext \
+    msmtp
 
 RUN docker-php-ext-configure \
   gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
@@ -48,6 +49,8 @@ RUN chmod +x /usr/local/bin/magento-install
 
 ADD etc/xdebug.template /usr/local/etc/php/conf.d/php-xdebug.template
 ADD etc/php.template /usr/local/etc/php/conf.d/php-custom.template
+
+ADD etc/msmtprc.template /etc/msmtprc.template
 
 ENTRYPOINT ["/usr/local/bin/docker-configure"]
 CMD ["php-fpm"]
