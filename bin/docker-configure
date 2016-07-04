@@ -8,6 +8,11 @@ rm /usr/local/etc/php/conf.d/php-xdebug.template
 rm /usr/local/etc/php/conf.d/php-custom.template
 rm /etc/msmtprc.template
 
+MAGE_BIN=/var/www/magento/bin/magento
+if [ -e MAGE_BIN ]; then
+    chmod +x MAGE_BIN
+fi
+
 [ "$XDEBUG_ENABLE" = "true" ] && \
     docker-php-ext-enable xdebug && \
     echo "Xdebug is enabled"
